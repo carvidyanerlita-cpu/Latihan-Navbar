@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="shortcut icon" type="image/x-icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSolOrEerR1LP1SdimpqaGVFQWgB02BYPMiBQ&s">
+    <title>Profil Saya</title>
+    <style>
+        /* RESET DASAR */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background: linear-gradient(135deg, #2e1a79 0%, #744fce 50%, #E9CCED 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            overflow: hidden; /* Mencegah scroll karena partikel */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- PARTIKEL ANIMASI --- */
+        .particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .particles span {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: rgba(255,255,255,0.8);
+            border-radius: 50%;
+            animation: float 10s infinite linear;
+        }
+
+        @keyframes float {
+            from {
+                transform: translateY(100vh) translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-10vh) translateX(50px);
+                opacity: 0;
+            }
+        }
+
+        .particles span:nth-child(1) { left: 10%; animation-duration: 12s; }
+        .particles span:nth-child(2) { left: 30%; animation-duration: 8s; }
+        .particles span:nth-child(3) { left: 50%; animation-duration: 15s; }
+        .particles span:nth-child(4) { left: 70%; animation-duration: 10s; }
+        .particles span:nth-child(5) { left: 90%; animation-duration: 18s; }
+
+        /* --- NAVBAR STYLE --- */
+        .navbar {
+            width: 100%;
+            background-color: #b3a4e4;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            box-sizing: border-box;
+            z-index: 1000;
+            position: fixed;
+            top: 0;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+                
+        .nav-links li a {
+            text-decoration: none;
+            font-size: 17px;
+            transition: 0.3s;
+            background-color: #744fce;
+            color: #fff;
+            padding: 10px 25px;
+            border-radius: 20px;
+        }
+                
+        .nav-links li a:hover {
+            background-color: #e7ddff;
+            color: #5f36c3;
+            box-shadow: 0 0 10px rgba(116,79,206,0.6);
+        }
+                
+        .logo {
+            position: relative;
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+            background-color: #8a6bd6;
+            border-radius: 50%;
+            padding: 15px 20px;
+            box-shadow: 0 0 15px rgba(255,255,255,0.7);
+            overflow: hidden; 
+        }
+
+        .logo::after {
+            content: "";
+            position: absolute;
+            top: 0; left: -75%;
+            width: 50%; height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.8), transparent);
+            animation: shine 2s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -75%; }
+            100% { left: 125%; }
+        }
+
+        /* --- KARTU PROFIL TENGAH --- */
+        .main-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1; /* Di atas partikel */
+            padding-top: 70px; /* Supaya tidak tertutup navbar */
+        }
+
+        .profile-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 320px;
+            border: 1px solid #ddd;
+            text-align: left;
+            transition: background-color 0.4s ease, transform 0.3s ease;
+        }
+
+        .profile-container:hover {
+            background-color: lavender;
+            transform: translateY(-10px);
+        }
+        
+        h3 {
+            color: #333;
+            text-align: center;
+            border-bottom: 2px solid #4529ce;
+            margin: 15px 0 20px;
+            font-size: 1.5em;
+            padding-bottom: 10px;
+        }
+        
+        #info-label {
+            font-weight: bold;
+            color: #333;
+            display: inline-block;
+            width: 80px;
+        }
+        
+        .profile-info {
+            line-height: 2;
+            margin-bottom: 20px;
+            color: #444;
+        }
+
+        .profile-container img {
+            border-radius: 50%;
+            border: 3px solid #b3a4e4;
+            display: block;
+            margin: 0 auto;
+            object-fit: cover;
+        }
+
+        .btn-sertif {
+            display: block;
+            width: fit-content;
+            margin: 0 auto;
+            background-color: #744fce;
+            color: white;
+            padding: 10px 25px;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: 0.3s ease;
+            font-weight: bold;
+        }
+
+        .btn-sertif:hover {
+            background-color: #4a2a9d;
+            box-shadow: 0 5px 15px rgba(116, 79, 206, 0.4);
+            transform: scale(1.05);
+        }
+
+                .modal-sertif {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: none; /* Sembunyi */
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Trik CSS :target untuk membuka modal */
+        .modal-sertif:target {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 800px;
+            text-align: center;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px; right: 20px;
+            text-decoration: none;
+            color: #744fce;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .image-grid {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .item img {
+            width: 200px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid #744fce;
+            transition: 0.3s;
+        }
+
+        .item img:hover {
+            transform: scale(1.05);
+        }
+
+        .item p {
+            margin-top: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="particles">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <nav class="navbar">
+        <div class="logo">CR</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="PROFIL33.html">Profil</a></li>
+            <li><a href="kontak.html">Kontak</a></li>
+            <li><a href="dataPengunjung.html">Data Pengunjung</a></li>
+        </ul>
+    </nav>
+
+   <div class="main-content">
+        <div class="profile-container">
+            <img src="pipitimut.jpg" width="120" height="120" alt="Foto Profil">
+            <h3>Profil Saya</h3>
+            <div class="profile-info">
+                <span id="info-label">Nama</span>: Carvidya Nerlita<br>
+                <span id="info-label">Rumah</span>: Puncak Bogor<br>
+                <span id="info-label">Rayon</span>: Cisarua 7<br>
+                <span id="info-label">Jurusan</span>: PPLG<br>
+            </div>
+            
+            <a href="#galeri-sertif" class="btn-sertif">Lihat Sertifikat</a>
+        </div>
+    </div>
+
+    <div id="galeri-sertif" class="modal-sertif">
+        <div class="modal-content">
+            <a href="#" class="close-btn">&times; Tutup</a>
+            <h2>Sertifikat Saya</h2>
+            <div class="image-grid">
+                <div class="item">
+                    <img src="RevoU.jpg" alt="Sertifikat RevoU">
+                    <p>RevoU Course</p>
+                </div>
+                <div class="item">
+                    <img src="K3LH.jpg" alt="Sertifikat K3LH">
+                    <p>Sertifikat K3LH</p>
+                </div>
+                <div class="item">
+                    <img src="code.jpg" alt="Sertifikat Coding">
+                    <p>Coding Class</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

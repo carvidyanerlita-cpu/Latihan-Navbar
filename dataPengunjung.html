@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Pengunjung</title>
+    <link rel="shortcut icon" type="image/x-icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSolOrEerR1LP1SdimpqaGVFQWgB02BYPMiBQ&s">
+    <style>
+        /* RESET AGAR NAVBAR MEPET FULL */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #2e1a79 0%, #744fce 50%, #E9CCED 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* PARTIKEL DEKORATIF */
+        body::before, body::after {
+            content: "✨";
+            position: fixed;
+            font-size: 100px;
+            opacity: 0.1;
+            z-index: -1;
+        }
+        body::before { top: 10%; left: 5%; transform: rotate(-20deg); }
+        body::after { bottom: 10%; right: 5%; content: "💜"; font-size: 80px; }
+
+        /* NAVBAR MEPET FULL */
+        .navbar {
+            width: 100%;
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #b3a4e4;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            z-index: 1000;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+                
+        .nav-links li a {
+            text-decoration: none;
+            font-size: 17px;
+            font-family: 'Times New Roman', Times, serif;
+            transition: 0.3s;
+            background-color: #744fce;
+            color: #fff;
+            padding: 10px 25px;
+            border-radius: 20px;
+        }
+                
+        .nav-links li a:hover {
+            background-color: #e7ddff;
+            color: #5f36c3;
+            box-shadow: 0 0 10px rgba(116,79,206,0.6);
+        }
+                
+        .logo {
+            position: relative;
+            color: #fff;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 24px;
+            font-weight: bold;
+            background-color: #8a6bd6;
+            border-radius: 50%;
+            padding: 15px 20px;
+            box-shadow: 0 0 15px rgba(255,255,255,0.7);
+            overflow: hidden; 
+        }
+
+        .logo::after {
+            content: "";
+            position: absolute;
+            top: 0; left: -75%;
+            width: 50%; height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.8), transparent);
+            animation: shine 2s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -75%; }
+            100% { left: 125%; }
+        }
+
+        h2 {
+            font-family: 'Times New Roman', Times, serif;
+            color: white;
+            margin: 40px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-size: 2rem;
+            text-align: center;
+        }
+        
+        .flexbox-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* CARD STYLE DENGAN TRANSISI HALUS */
+        .card {
+            width: 240px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            text-align: center;
+            margin: 15px;
+            /* Transisi pada kartu agar perubahan warna lavender halus */
+            transition: background-color 0.4s ease, transform 0.3s ease;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        
+        .card:hover {
+            background-color: lavender;
+            transform: translateY(-8px);
+        }
+        
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .card-title {
+            font-size: 20px;
+            margin: 15px 0 5px;
+            color: #2e1a79;
+        }
+
+        .card-subtitle {
+            font-size: 13px;
+            color: #666;
+            padding: 0 10px;
+            margin-bottom: 15px;
+        }
+        
+        /* BUTTON DENGAN TULISAN PUTIH */
+        .card-btn {
+            background-color: rgb(116, 79, 206);
+            color: white; /* Tulisan jadi putih sesuai request */
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 10px 0 20px;
+            font-weight: bold;
+            font-family: 'Times New Roman', Times, serif;
+            transition: all 0.3s ease;
+        }
+
+        /* Hover Button Berubah Warna Ungu Gelap */
+        .card-btn:hover {
+            background-color: #4a2a9d;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">CR</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="PROFIL33.html">Profil</a></li>
+            <li><a href="kontak.html">Kontak</a></li>
+            <li><a href="dataPengunjung.html">Data Pengunjung</a></li>
+        </ul>
+    </nav>
+
+    <h2>✨ Daftar Kunjungan ✨</h2>
+
+    <div class="flexbox-container">
+        <div class="card">
+            <img src="img/kariskrim.jpeg" class="card-img" alt="Karis">
+            <h4 class="card-title">Karis</h4>
+            <p class="card-subtitle">CI CI CIMO CIMOI CI CI CI CIMO CI!</p>
+            <button class="card-btn">Sapa Balik</button>
+        </div>
+        
+        <div class="card">
+            <img src="img/niko.jpeg" class="card-img" alt="Niko">
+            <h4 class="card-title">Niko</h4>
+            <p class="card-subtitle">wih, tinggal diberi sedikit detail lagi..</p>
+            <button class="card-btn">Sapa Balik</button>
+        </div>
+
+        <div class="card">
+            <img src="img/bintang.jpeg" class="card-img" alt="Bintang">
+            <h4 class="card-title">Bintang</h4>
+            <p class="card-subtitle">Asiiiiiiiiiik!</p>
+            <button class="card-btn">Sapa Balik</button>
+        </div>
+
+    <div class="flexbox-container">
+    <div class="card">
+        <div style="background: #744fce; color: white; padding: 10px; font-size: 12px;">Baru saja</div>
+        <img src="https://ui-avatars.com/api/?name=Guest&background=E9CCED&color=2e1a79" class="card-img" alt="Guest">
+        <h4 class="card-title">Pengunjung Web</h4>
+        <p class="card-subtitle">"Webnya muantap, sukses terus buat Carvidya!"</p>
+        <button class="card-btn">Sapa Balik</button>
+    </div>
+
+    <div class="card">
+        <div style="background: #b3a4e4; color: white; padding: 10px; font-size: 12px;">1 jam yang lalu</div>
+        <img src="img/kariskrim.jpeg" class="card-img" alt="Karis">
+        <h4 class="card-title">Karis</h4>
+        <p class="card-subtitle">"Semangat belajarnya di PPLG Wikrama!"</p>
+        <button class="card-btn">Sapa Balik</button>
+    </div>
+    
+    </div>
+</body>
+</html>
